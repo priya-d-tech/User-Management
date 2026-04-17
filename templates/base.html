@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>My App</h2>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/add">Add User</a>
+    <a href="/profile">Profile</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+
+    <h2>{{ title }}</h2>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% for msg in messages %}
+            <p style="color:green;">{{ msg }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>My App</h2>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/add">Add User</a>
+    <a href="/profile">Profile</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+
+<h2>Dashboard</h2>
+
+<div class="cards">
+    <div class="card">
+        <h3>Total Users</h3>
+        <p>{{ total_users }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Admins</h3>
+        <p>{{ admin_count }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Users</h3>
+        <p>{{ user_count }}</p>
+    </div>
+</div>
+
+<canvas id="userChart" height="100"></canvas>
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Actions</th>
+</tr>
+
+{% for user in users %}
+<tr>
+    <td>{{ user[0] }}</td>
+    <td>{{ user[1] }}</td>
+    <td>
+        <a href="/edit/{{ user[0] }}">Edit</a> |
+        <a href="/delete/{{ user[0] }}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+
+<script>
+const ctx = document.getElementById('userChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Admins', 'Users'],
+        datasets: [{
+            label: 'User Distribution',
+            data: [{{ admin_count }}, {{ user_count }}],
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

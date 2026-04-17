@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card" style="max-width:400px;">
+<form method="POST">
+    <input type="text" name="username" value="{{ user[1] }}" required>
+    <button type="submit">Update</button>
+</form>
+</div>
+
+{% endblock %}
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit User</h2>
+
+    <form method="POST">
+        <input type="text" name="username" value="{{ user[1] }}" required>
+        <button type="submit">Update</button>
+    </form>
+
+    <a href="/dashboard">Back</a>
+</div>
+
+</body>
+</html>-->
